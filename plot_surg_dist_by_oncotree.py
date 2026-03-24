@@ -81,8 +81,8 @@ def main():
             counts[cat] = 0
     counts = counts[list(COLORS.keys())].loc[top50]
 
-    fig, axes = plt.subplots(5, 10, sharey="row", figsize=(22, 14))
-    fig.subplots_adjust(hspace=0.6, wspace=0.25)
+    fig, axes = plt.subplots(5, 10, sharey="row", figsize=(26, 16))
+    fig.subplots_adjust(hspace=0.35, wspace=0.08)
 
     bar_handles = None
     for i, oncotree in enumerate(top50):
@@ -97,14 +97,14 @@ def main():
             bars.append(b)
             bottom += val
         ax.set_xticks([0])
-        ax.set_xticklabels([oncotree], rotation=0, ha="center", fontsize=10)
+        ax.set_xticklabels([oncotree], rotation=0, ha="center", fontsize=25)
         ax.tick_params(axis="x", length=0)
         ax.set_xlim(-0.5, 0.5)
         for spine in ax.spines.values():
             spine.set_visible(False)
-        ax.yaxis.grid(True, linestyle=":", color="#aaaaaa", zorder=0)
+        ax.yaxis.grid(True, linestyle=":", color="#aaaaaa", linewidth=1.5, zorder=0)
         ax.set_axisbelow(True)
-        ax.tick_params(axis="y", length=0)
+        ax.tick_params(axis="y", length=0, labelsize=22)
         if bar_handles is None:
             bar_handles = bars
 
@@ -115,11 +115,13 @@ def main():
     fig.legend(
         bar_handles,
         list(COLORS.keys()),
-        loc="center right",
-        bbox_to_anchor=(1.02, 0.5),
+        loc="upper left",
+        bbox_to_anchor=(1.01, 1.0),
+        ncol=1,
         frameon=False,
         handlelength=1,
         handleheight=1,
+        fontsize=28,
     )
 
     plt.savefig(args.output, dpi=150, bbox_inches="tight")

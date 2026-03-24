@@ -12,7 +12,7 @@ import pandas as pd
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Cross-reference sample collection dates with surgeries from cBioPortal flatfiles."
+        description="Match sample collection dates to surgeries from cBioPortal.",
     )
     parser.add_argument("cbio_flatfile_dir", type=Path)
     parser.add_argument("--output", "-o", type=Path, default=None)

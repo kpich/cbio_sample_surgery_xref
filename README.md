@@ -4,7 +4,7 @@ cbiportal flatfiles
 ## Run
 
 ```
-uv run xref.py /path/to/msk_solid_heme > output.csv
+uv run get_sample_col_surgery_names.py /path/to/msk_solid_heme > output.csv
 ```
 
 Optional: `--output output.csv` instead of stdout redirect.

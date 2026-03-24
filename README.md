@@ -8,3 +8,9 @@ uv run get_sample_col_surgery_names.py /path/to/msk_solid_heme > output.csv
 ```
 
 Optional: `--output output.csv` instead of stdout redirect.
+
+```
+uv run plot_surg_dist_by_oncotree.py /path/to/msk_solid_heme
+```
+
+Outputs `surg_dist_by_oncotree.png` (override with `--output`).

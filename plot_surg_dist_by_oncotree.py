@@ -19,11 +19,35 @@ COLORS = {
 }
 
 
+BIOPSY_TERMS = {"BIOPS", "ASPIRATION", "SAMPLING"}
+RESECTION_TERMS = {
+    "RESECT",
+    "LOBECTOMY",
+    "HYSTERECTOMY",
+    "EXCISION",
+    "PROSTATECTOMY",
+    "COLECTOMY",
+    "PANCREATECTOMY",
+    "NEPHRECTOMY",
+    "CYSTECTOMY",
+    "HEPATECTOMY",
+    "OOPHORECTOMY",
+    "WHIPPLE",
+    "CRANIOTOMY",
+    "CRANIECTOMY",
+    "SPLENECTOMY",
+    "GASTRECTOMY",
+    "MASTECTOMY",
+    "THYROIDECTOMY",
+    "ADRENALECTOMY",
+}
+
+
 def classify_surgery(names: pd.Series) -> str:
     clean = [n for n in names if pd.notna(n)]
-    if any("BIOPS" in n for n in clean):
+    if any(term in n for n in clean for term in BIOPSY_TERMS):
         return "biopsy"
-    if any("RESECT" in n for n in clean):
+    if any(term in n for n in clean for term in RESECTION_TERMS):
         return "resection"
     return "unknown"
 
@@ -116,7 +140,7 @@ def main():
         bar_handles,
         list(COLORS.keys()),
         loc="upper left",
-        bbox_to_anchor=(1.01, 1.0),
+        bbox_to_anchor=(1.01, 0.95),
         ncol=1,
         frameon=False,
         handlelength=1,

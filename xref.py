@@ -5,8 +5,9 @@
 
 import argparse
 import sys
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 
 def main():
@@ -31,12 +32,14 @@ def main():
 
     merged = specimens.merge(surgeries, on=["PATIENT_ID", "START_DATE"], how="left")
 
-    merged = merged.rename(columns={
-        "PATIENT_ID": "patient_id",
-        "SAMPLE_ID": "sample_id",
-        "START_DATE": "date",
-        "PROCEDURE_DESCRIPTION": "surgery_name",
-    })[["patient_id", "sample_id", "date", "surgery_name"]]
+    merged = merged.rename(
+        columns={
+            "PATIENT_ID": "patient_id",
+            "SAMPLE_ID": "sample_id",
+            "START_DATE": "date",
+            "PROCEDURE_DESCRIPTION": "surgery_name",
+        }
+    )[["patient_id", "sample_id", "date", "surgery_name"]]
 
     out = open(args.output, "w") if args.output else sys.stdout
     try:
